@@ -1,0 +1,13 @@
+# Ignore everything
+*
+# Allow necessary files
+# !socket-handler.js
+!server.js
+!prisma
+!app.json
+!.svelte-kit
+!build
+!package*.json
+!.env
+!.env.production
+# intentionally ignoring .env.local

@@ -1,0 +1,13 @@
+{
+  "name": "Sveltekit with Prisma and Socket.IO Template",
+  "description": "Template for integrating and deploying SvelteKit apps with Prisma and Socket.IO",
+  "keywords": ["nodejs", "svelte", "sveltekit", "prisma", "socket"],
+  "repository": "https://github.com/parkerbedlan/sveltekit-prisma-socket-template",
+  "scripts": {
+    "dokku": {
+      "predeploy": "npm run migrate"
+    }
+  },
+  "image": "parkerbedlan/sveltekit-prisma-template",
+  "addons": ["dokku-postgres"]
+}
