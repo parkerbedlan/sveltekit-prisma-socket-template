@@ -1,7 +1,7 @@
 # Ignore everything
 *
 # Allow necessary files
-# !socket-handler.js
+!socket-handler.js
 !server.js
 !prisma
 !app.json
