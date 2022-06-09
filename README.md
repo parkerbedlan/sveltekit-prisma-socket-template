@@ -10,9 +10,8 @@
 4. `npm run dev`
 
 ## Deploying to Dokku (for developers using Windows)
-1. Update `_.env.production` as described by the comment in the file.
-2. Run `setup_dokku.bat` and walk through its instructions.
-3. To deploy code changes, run `deploy.bat` (which gets generated when you run `setup_dokku.bat`)
+1. Run `setup_dokku.bat` and walk through its instructions.
+2. To deploy code changes, run `deploy.bat` (which gets generated when you run `setup_dokku.bat`)
 
 ## Deploying to Dokku (manually)
 ### Setting up the server:
