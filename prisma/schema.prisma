@@ -1,3 +1,5 @@
+// Once you've updated this schema to your liking, run "npx prisma generate" and "npx prisma migrate dev"
+
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 

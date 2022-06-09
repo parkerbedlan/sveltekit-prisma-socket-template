@@ -1,20 +1,25 @@
-# SvelteKit with Prisma Template
-### Implements Prisma in a SvelteKit app and deploys to a Dokku server.
+# SvelteKit with Prisma and Socket<span>.<span/>IO Template
+### Implements [Prisma](https://www.prisma.io/) and [Socket.IO](https://socket.io/) in a [SvelteKit](https://kit.svelte.dev/) app that  deploys to a [Dokku](https://dokku.com/) server.
 
-#### Before running:
-1. Create a Postgres database on your machine for testing
-2. Create a file called `.env` and put inside: `DATABASE_URL="postgres://<postgres-username>:<postgres-password>@localhost:5432/<postgres-schema>"`
-3. Create an empty file called `.env.production`
-4. `npm i`
-5. `npx prisma generate` and `npx prisma migrate dev`
-6. `npm run dev`
 
-#### Steps to deploy:
-##### Setting up the server:
-1. Create a Docker Hub repo
-2. Buy a DigitalOcean Linux Droplet with Dokku pre-installed
-3. Buy a domain from Namecheap (e.g. `my-domain.com`) and create an `A Record` directed towards the `<server-ip-address>` of the Droplet
-4. Set up the Dokku app
+## Running the dev server
+1. `npm i`
+2. Update `_.env` and `_.env.local` as described by the comments in the files.
+3. Update `prisma/schema.prisma` to your liking and then run `npx prisma generate` and `npx prisma migrate dev`
+4. `npm run dev`
+
+## Deploying to Dokku (for developers using Windows)
+1. Update `_.env.production` as described by the comment in the file.
+2. Run `setup_dokku.bat` and walk through its instructions.
+3. To deploy code changes, run `deploy.bat` (which gets generated when you run `setup_dokku.bat`)
+
+## Deploying to Dokku (manually)
+### Setting up the server:
+1. Update `_.env.production` as described by the comment in the file.
+2. Create a Docker Hub repo
+3. Buy a DigitalOcean Linux Droplet with Dokku pre-installed
+4. Buy a domain from Namecheap (e.g. `my-domain.com`) and create an `A Record` directed towards the `<server-ip-address>` of the Droplet
+5. Set up the Dokku app
 	```
 	ssh root@<server-ip-address>
 	dokku apps:create <app-name>
@@ -22,11 +27,11 @@
 	dokku proxy:ports-set <app-name> http:80:8080
 	dokku postgres:create <app-name>-db
 	dokku postgres:link <app-name>-db <app-name>
-	# *Push to the server* (instructions below)
-	# first time: dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+	# *Deploy to the server* (instructions below)
+	dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 	dokku letsencrypt:enable <app-name> # this automatically sets https:443:8080 if it works
 	```
-##### Pushing to the server:
+### Deploying code changes:
 1. Build with `npm run build`
 2. Containerize the code using Docker and upload to Docker Hub:
 	```
@@ -39,4 +44,3 @@
 	docker pull <dockerhub-username>/<repo-name>:<tag-name>
 	dokku git:from-image <app-name> <dockerhub-username>/<repo-name>:<tag-name>
 	```
-	> Note: If coding on a Windows computer, `deploy_windows.bat` will run the above pushing steps for you.
