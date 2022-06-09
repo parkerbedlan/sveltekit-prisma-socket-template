@@ -3,6 +3,7 @@
 
 
 ## Running the dev server
+0. `degit parkerbedlan/sveltekit-prisma-socket-template`
 1. `npm i`
 2. Update `_.env` and `_.env.local` as described by the comments in the files.
 3. Update `prisma/schema.prisma` to your liking and then run `npx prisma generate` and `npx prisma migrate dev`
